@@ -9,8 +9,8 @@ on:
 
 jobs:
   analyze:
-    if: github.event_name == 'pull_request' && github.ref == 'refs/heads/master'
-    name: Analyze (${{ matrix.language }})
+    if: github.event_name != 'pull_request' && github.ref != 'refs/heads/master'
+    name: Analyze CodeQL
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
     timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
     permissions:
